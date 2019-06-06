@@ -13,6 +13,9 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class TwoPlayerMap extends Map {
 
+    //Names of the players
+    private String player1name, player2name;
+
     // the second human player
     private Player player2;
 
@@ -24,6 +27,9 @@ public class TwoPlayerMap extends Map {
     private boolean p1 = false;
     private boolean p2 = false;
     private boolean tie = false;
+
+    //highscores
+    public Integer[] highscores = new Integer[]{5};
 
     // constructor calls super and adds KeyListeners
     public TwoPlayerMap(JLabel sco1, JLabel sco2, int p) {
@@ -58,6 +64,22 @@ public class TwoPlayerMap extends Map {
         });
     }
 
+
+    public void setPlayer1name(String player1name){
+        this.player1name = player1name;
+    }
+    public void setPlayer2name(String player2name){
+        this.player2name = player2name;
+    }
+
+    public String getPlayer1name() {
+        return player1name;
+    }
+
+    public String getPlayer2name() {
+        return player2name;
+    }
+
     // moves both players and checks if they crash
     void tick() {
         player.setBounds(getWidth(), getHeight());
@@ -76,6 +98,7 @@ public class TwoPlayerMap extends Map {
         }
         setScore();
         repaint();
+
     }
 
     // restarts the score if the game is exited
@@ -86,10 +109,11 @@ public class TwoPlayerMap extends Map {
 
     // sets the players' scores and displays the boost left in game
     public void setScore() {
+
         score1.setText
-                ("   Player 1: " + i );
+                (" " + getPlayer1name() + ": " + i );
         score2.setText
-                ("   Player 2: " + j );
+                (" " + getPlayer2name() + ": " + j );
     }
 
     // initializes all players and restarts the timer
@@ -99,11 +123,11 @@ public class TwoPlayerMap extends Map {
         tie = false;
         int[] start1 = getRandomStart();
         player = new Player
-                (start1[0], start1[1], start1[2], start1[3], Color.BLUE);
+                (start1[0], start1[1], start1[2], start1[3], Color.BLUE, player1name);
         players[0] = player;
         int[] start2 = getRandomStart();
         player2 = new Player
-                (start2[0], start2[1], start2[2], start2[3], Color.ORANGE);
+                (start2[0], start2[1], start2[2], start2[3], Color.ORANGE, player2name);
         players[1] = player2;
         timer.start();
         requestFocusInWindow();

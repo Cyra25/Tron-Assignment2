@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class Player extends LightCycle {
 
@@ -28,7 +28,7 @@ public class Player extends LightCycle {
     ArrayList<Shape> lines = new ArrayList<Shape>();
 
     // constructor initializes initial conditions, timer, and color
-    public Player(int randX, int randY, int velx, int vely, Color color) {
+    public Player(int randX, int randY, int velx, int vely, Color color, String playerName) {
         super(randX, randY, velx, vely, WIDTH, HEIGHT);
         startVel = Math.max(Math.abs(velx), Math.abs(vely));
 //        boostTimer = new Timer(300, new ActionListener() {
@@ -85,6 +85,8 @@ public class Player extends LightCycle {
     public void addPlayers(Player[] players) {
     }
 
+
+
     //lightwall on and off
     public void lightwall(){
         if (lightwallOn == false) {
@@ -101,6 +103,7 @@ public class Player extends LightCycle {
         }else if (velocityX == 0) {
             velocityY = velocityY - 0.3;
         }
+        System.out.println("speed down "+velocityX +" and "+velocityY);
     }
 
     //speed down
@@ -110,6 +113,7 @@ public class Player extends LightCycle {
         }else if (velocityX == 0) {
             velocityY = velocityY + 0.3;
         }
+        System.out.println("Velocity up "+velocityX +" and "+velocityY);
     }
 
     // moves the Player based on its conditions

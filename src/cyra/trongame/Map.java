@@ -9,6 +9,9 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public abstract class Map extends JComponent {
 
+    //name of the players
+    public String player1Name, player2Name;
+
     // the player and all other players
     Player player;
     Player[] players;
@@ -78,6 +81,21 @@ public abstract class Map extends JComponent {
             public void keyReleased(KeyEvent e) {
             }
         });
+    }
+
+    public void setPlayer1Name(String playerName1){
+        this.player1Name = playerName1;
+    }
+    public void setPlayer2Name(String playerName2){
+        this.player2Name = playerName2;
+    }
+
+    public String getPlayer1Name() {
+        return player1Name;
+    }
+
+    public String getPlayer2Name() {
+        return player2Name;
     }
 
     // returns an array of velocities and dimensions for a Player

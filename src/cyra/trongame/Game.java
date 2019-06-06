@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 public class Game extends Component implements Runnable {
     private String gameRequest = "LightCycles game request to start";
 
+    //set the name of the players
+    public String player1name, player2name;
     // Client Server
     private GameClient socketClient;
 
@@ -120,6 +122,9 @@ public class Game extends Component implements Runnable {
         // action listeners
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                player1name = JOptionPane.showInputDialog("Enter the name of the player 1");
+                player2name = JOptionPane.showInputDialog("Enter the name of the player 2");
                 frame.remove(outside);
                 frame.setLayout(new BorderLayout());
                 frame.add(levelTwoPlayer, BorderLayout.CENTER);
@@ -129,6 +134,8 @@ public class Game extends Component implements Runnable {
                 levelTwoPlayer.requestFocusInWindow();
                 levelTwoPlayer.revalidate();
                 levelTwoPlayer.reset();
+                levelTwoPlayer.setPlayer1name(player1name);
+                levelTwoPlayer.setPlayer2name(player2name);
             }
         });
 
