@@ -1,5 +1,5 @@
+12 - n
 11 - hello
-7 - hi
-6 - hi
+7 - m
+6 - cyra
 5 - hi
-4 - s

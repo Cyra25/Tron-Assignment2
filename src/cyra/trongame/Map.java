@@ -75,6 +75,8 @@ public abstract class Map extends JComponent {
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     player1.setVelocityY(velocity1);
                     player1.setVelocityX(0);
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                    player1.lightwall();
                 } else if (e.getKeyCode() == KeyEvent.VK_N) {
                     if (velocity1 >1) {
                         velocity1++;

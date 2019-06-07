@@ -1,7 +1,6 @@
 package cyra.trongame;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -53,6 +52,8 @@ public class TwoPlayerMap extends Map {
             } else if (e.getKeyCode() == KeyEvent.VK_S) {
                 player2.setVelocityY(velocity2);
                 player2.setVelocityX(0);
+            } else if (e.getKeyCode() == KeyEvent.VK_Q){
+                player2.lightwall();
             } else if (e.getKeyCode() == KeyEvent.VK_E) {
                 if (velocity2 >1) {
                     velocity2++;
@@ -168,21 +169,6 @@ public class TwoPlayerMap extends Map {
         requestFocusInWindow();
     }
 
-//    public void setPlayer1Name(String playerName1){
-//        this.player1name = playerName1;
-//    }
-//    public void setPlayer2Name(String playerName2){
-//        this.player2name = playerName2;
-//    }
-//
-//    public String getPlayer1Name() {
-//        return player1name;
-//    }
-//
-//    public String getPlayer2Name() {
-//        return player2name;
-//    }
-
     // updates the scores after each round
     public void addScore() {
         if (!run) {
@@ -243,15 +229,15 @@ public class TwoPlayerMap extends Map {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         if (p1) {
-
-            g.drawString(player1name + " wins!",MAPWIDTH / 2 - 50, MAPHEIGHT - 30);
+            g.drawString(player1name + " wins!",MAPWIDTH / 2-70, MAPHEIGHT/2);
         }
         if (p2) {
-            g.drawString(player2name + " wins!",MAPWIDTH / 2 - 50, MAPHEIGHT - 30);
+            g.drawString(player2name + " wins!",MAPWIDTH / 2-70, MAPHEIGHT/2);
         }
         if (tie) {
-            g.drawString("It's a tie!",MAPWIDTH / 2 - 50, MAPHEIGHT - 30);
+            g.drawString("It's a tie!",MAPWIDTH / 2-70, MAPHEIGHT/2 );
         }
     }
 }

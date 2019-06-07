@@ -78,24 +78,31 @@ public class Game extends Component implements Runnable {
         highscore4.setHorizontalAlignment(JLabel.CENTER);
         highscore5.setHorizontalAlignment(JLabel.CENTER);
 
+
         // instructions
         instructions1Player1.setText("Player 1 Controls:");
-        instructions2Player1.setText("Up = Up Arrow, Down = Down Arrow, Left = Left Arrow, Right = Right Arrow");
-        instructions3Player1.setText("Accelerate/Decelerate = N/M, Jet Wall On/Off = Space");
+        instructions2Player1.setText("<html><body><br>Up = Up Arrow<br><br>Down = Down Arrow<br><br>Left = Left Arrow<br><br>Right = Right Arrow<br><br>Accelerate = N<br><br>Decelerate = M<br><br>Jet Wall on/off = Space");
+
 
         instructions1Player2.setText("Player 2 Controls:");
-        instructions2Player2.setText("Up = W, Down = S, Left = A, Right = D");
-        instructions3Player2.setText("Accelerate/Decelerate = E/F, Jet Wall On/Off = Q");
+        instructions2Player2.setText("<html><body><br>Up = W<br><br>Down = S<br><br>Left = A<br><br>Right = D<br><br>Accelerate = E<br><br>Decelerate = F<br><br>Jet Wall on/off = Q");
+        instructions2Player2.setHorizontalAlignment(JLabel.CENTER);
 
         instructions1Player1.setForeground(Color.WHITE);
         instructions2Player1.setForeground(Color.WHITE);
-        instructions3Player1.setForeground(Color.WHITE);
 
         instructions1Player2.setForeground(Color.WHITE);
         instructions2Player2.setForeground(Color.WHITE);
-        instructions3Player2.setForeground(Color.WHITE);
 
 
+        west.add(instructions1Player1);
+        west.add(instructions2Player1);
+        east.add(instructions1Player2);
+        east.add(instructions2Player2);
+        instructions2Player1.setHorizontalAlignment(JLabel.CENTER);
+        instructions1Player1.setHorizontalAlignment(JLabel.CENTER);
+        instructions2Player2.setHorizontalAlignment(JLabel.CENTER);
+        instructions1Player2.setHorizontalAlignment(JLabel.CENTER);
         // high scores
         handleScores(highscoresDisplayList);
 
@@ -124,6 +131,7 @@ public class Game extends Component implements Runnable {
         center.setLayout(new GridLayout(12,1));
 
 
+        center.add(subTitle);
         center.add(highscore1);
         highscore1.setForeground(Color.WHITE);
         center.add(highscore2);
@@ -135,22 +143,18 @@ public class Game extends Component implements Runnable {
         center.add(highscore5);
         highscore5.setForeground(Color.WHITE);
 
-        center.add(instructions1Player1);
-        center.add(instructions2Player1);
-        center.add(instructions3Player1);
-        center.add(instructions1Player2);
-        center.add(instructions2Player2);
-        center.add(instructions3Player2);
-
-
+        west.add(instructions1Player1);
+        west.add(instructions2Player1);
+        east.add(instructions1Player2);
+        east.add(instructions2Player2);
 
         north.setLayout(new GridLayout(2, 1));
         north.add(title);
-        north.add(subTitle);
 
-        west.setPreferredSize(new Dimension(25, 300));
+        center.setPreferredSize(new Dimension(200, 300));
+        west.setPreferredSize(new Dimension(150, 300));
         south.setPreferredSize(new Dimension(200, 50));
-        east.setPreferredSize(new Dimension(25, 100));
+        east.setPreferredSize(new Dimension(150, 300));
         north.setPreferredSize(new Dimension(200, 120));
 
         // adds main menu panel to the frame
@@ -183,7 +187,7 @@ public class Game extends Component implements Runnable {
         // the reset and main menu buttons for two-player mode
         final JButton resetTwo = new JButton("Restart");
         bottomGameMenu.add(resetTwo);
-        final JButton exitTwo = new JButton("End Game");
+        final JButton exitTwo = new JButton("Quit");
         bottomGameMenu.add(exitTwo);
 
         // the two-player level
@@ -199,18 +203,18 @@ public class Game extends Component implements Runnable {
                 String player1name, player2name;
 
                 while(!validUsers){
-                    player1name = JOptionPane.showInputDialog("Enter Player 1 user name", null);
-                    player2name = JOptionPane.showInputDialog("Enter Player 2 user name", null);
+                    player1name = JOptionPane.showInputDialog("Enter the name of Player 1", null);
+                    player2name = JOptionPane.showInputDialog("Enter the name of Player 2", null);
 
                     ColorChoosing playerOneColor = new ColorChoosing(1);
                     ColorChoosing playerTwoColor = new ColorChoosing(2);
 
                     if(player1name.equals("") || player2name.equals("")){
-                        JOptionPane.showMessageDialog(null,"Usernames cannot be empty");
+                        JOptionPane.showMessageDialog(null,"Player name cannot be empty");
                     }
 
                     else if(player1name.equalsIgnoreCase(player2name)){
-                        JOptionPane.showMessageDialog(null,"Player 1 and Player 2 must have different user names.");
+                        JOptionPane.showMessageDialog(null,"Player 1 and Player 2 must have different names.");
                     }
 
                     else if(playerOneColor.getColorSelected() == playerTwoColor.getColorSelected()){
