@@ -97,24 +97,24 @@ public class Player extends LightCycle {
     }
 
     //speed up
-    public void speedDown(){
-        if (velocityY == 0) {
-            velocityX = velocityX - 0.3;
-        }else if (velocityX == 0) {
-            velocityY = velocityY - 0.3;
-        }
-        System.out.println("speed down "+velocityX +" and "+velocityY);
-    }
+//    public void speedDown(){
+//        if (velocityY == 0) {
+//            velocityX = velocityX - 0.3;
+//        }else if (velocityX == 0) {
+//            velocityY = velocityY - 0.3;
+//        }
+//        System.out.println("speed down "+velocityX +" and "+velocityY);
+//    }
 
     //speed down
-    public void speedUp(){
-        if (velocityY == 0) {
-            velocityX = velocityX + 0.3;
-        }else if (velocityX == 0) {
-            velocityY = velocityY + 0.3;
-        }
-        System.out.println("Velocity up "+velocityX +" and "+velocityY);
-    }
+//    public void speedUp(){
+//        if (velocityY == 0) {
+//            velocityX = velocityX + 0.3;
+//        }else if (velocityX == 0) {
+//            velocityY = velocityY + 0.3;
+//        }
+//        System.out.println("Velocity up "+velocityX +" and "+velocityY);
+//    }
 
     // moves the Player based on its conditions
     public void move() {

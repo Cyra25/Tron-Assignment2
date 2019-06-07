@@ -1,19 +1,19 @@
 package cyra.trongame;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Random;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public abstract class Map extends JComponent {
 
-    //name of the players
-    public String player1Name, player2Name;
 
     // the player and all other players
-    Player player;
+    Player player1;
     Player[] players;
     Color[] colors = {Color.CYAN, Color.PINK, Color.WHITE, Color.YELLOW,
             Color.BLUE, Color.ORANGE, Color.RED, Color.GREEN};
@@ -25,7 +25,10 @@ public abstract class Map extends JComponent {
     int MAPHEIGHT = 500;
 
     // initial velocity
-    int VELOCITY = 2;
+    int velocity1 = 2;
+    int velocity2 = 2;
+
+
 
     // score and score labels
     int i = 0;
@@ -59,48 +62,59 @@ public abstract class Map extends JComponent {
         // player one controls
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (!player.getAlive()) {
+                if (!player1.getAlive()) {
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    player.setXVelocity(-VELOCITY);
-                    player.setYVelocity(0);
+                    player1.setVelocityX(-velocity1);
+                    player1.setVelocityY(0);
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    player.setXVelocity(VELOCITY);
-                    player.setYVelocity(0);
+                    player1.setVelocityX(velocity1);
+                    player1.setVelocityY(0);
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    player.setYVelocity(-VELOCITY);
-                    player.setXVelocity(0);
+                    player1.setVelocityY(-velocity1);
+                    player1.setVelocityX(0);
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    player.setYVelocity(VELOCITY);
-                    player.setXVelocity(0);
+                    player1.setVelocityY(velocity1);
+                    player1.setVelocityX(0);
                 } else if (e.getKeyCode() == KeyEvent.VK_N) {
-                    player.speedUp();
-                } else if (e.getKeyCode() == KeyEvent.VK_M) {
-                    player.speedDown();
-                }
+                    if (velocity1 >1) {
+                        velocity1++;
+                        if (player1.getVelocityX() > 0) {
+                            player1.setVelocityX(velocity1);
+                        } else if (player1.getVelocityX() < 0) {
+                            player1.setVelocityX(-velocity1);
+                        } else if (player1.getVelocityY() > 0) {
+                            player1.setVelocityY(velocity1);
+                        } else if (player1.getVelocityY() < 0) {
+                            player1.setVelocityY(-velocity1);
+                        }
+                    }
+                    //speed down
+                } else if (e.getKeyCode() == KeyEvent.VK_M){
+                    if (velocity1 >1 ) {
+                        velocity1--;
+                        if (player1.getVelocityX() > 0) {
+                            player1.setVelocityX(-velocity1);
+                        } else if (player1.getVelocityX() < 0) {
+                            player1.setVelocityX(velocity1);
+                        } else if (player1.getVelocityY() > 0) {
+                            player1.setVelocityY(-velocity1);
+                        } else if (player1.getVelocityY() < 0) {
+                            player1.setVelocityY(velocity1);
+                        }
+                    }}
             }
             public void keyReleased(KeyEvent e) {
             }
         });
     }
-
-    public void setPlayer1Name(String playerName1){
-        this.player1Name = playerName1;
-    }
-    public void setPlayer2Name(String playerName2){
-        this.player2Name = playerName2;
+    public int[] getRandomStart1() {
+        return randomStarts(2);
     }
 
-    public String getPlayer1Name() {
-        return player1Name;
-    }
-
-    public String getPlayer2Name() {
-        return player2Name;
-    }
 
     // returns an array of velocities and dimensions for a Player
     // ensures that the Player moves toward the center initially
-    public int[] getRandomStart() {
+    public int[] randomStarts(int velocity1) {
         int[] start = new int[4];
         int xnew = 50 + rand.nextInt(400);
         int ynew = 50 + rand.nextInt(400);
@@ -109,15 +123,15 @@ public abstract class Map extends JComponent {
         int vely = 0;
         if (ra == 0) {
             if (xnew < 250) {
-                velx = VELOCITY;
+                velx = velocity1;
             } else {
-                velx = -VELOCITY;
+                velx = -velocity1;
             }
         } else {
             if (ynew < 250) {
-                vely = VELOCITY;
+                vely = velocity1;
             } else {
-                vely = -VELOCITY;
+                vely = -velocity1;
             }
         }
         start[0] = xnew;
@@ -126,10 +140,25 @@ public abstract class Map extends JComponent {
         start[3] = vely;
         return start;
     }
+    public int[] getRandomStart2() {
+        return randomStarts(2);
+    }
 
-    // returns the velocity
-    public int getVelocity() {
-        return VELOCITY;
+    public void setVelocity1(int velocity1){
+        this.velocity1 = velocity1;
+    }
+
+
+    public void setVelocity2(int velocity2) {
+        this.velocity2 = velocity2;
+    }
+
+    public int getVelocity1() {
+        return velocity1;
+    }
+
+    public int getVelocity2() {
+        return velocity2;
     }
 
     // moves the game by one timestamp

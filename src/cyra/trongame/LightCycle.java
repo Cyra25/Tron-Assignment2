@@ -11,8 +11,8 @@ public abstract class LightCycle {
     int width; // width and height of the court
     int height;
 
-    double velocityX; // Pixels to move each time move() is called.
-    double velocityY;
+    int velocityX; // Pixels to move each time move() is called.
+    int velocityY;
 
     int rightBound; // Maximum permissible x, y values.
     int bottomBound;
@@ -34,7 +34,7 @@ public abstract class LightCycle {
     }
 
     // sets the player's x velocity as long as it doesn't oppose current motion
-    public void setXVelocity(int velocityX) {
+    public void setVelocityX(int velocityX) {
         if (!(velocityX > 0 && this.velocityX < 0)
                 && !(velocityX < 0 && this.velocityX > 0)) {
             this.velocityX = velocityX;
@@ -42,11 +42,19 @@ public abstract class LightCycle {
     }
 
     // sets the player's y velocity as long as it doesn't oppose current motion
-    public void setYVelocity(int velocityY) {
+    public void setVelocityY(int velocityY) {
         if (!(velocityY > 0 && this.velocityY < 0)
                 && !(velocityY < 0 && this.velocityY > 0)) {
             this.velocityY = velocityY;
         }
+    }
+
+    public int getVelocityX(){
+        return  velocityX;
+    }
+
+    public int getVelocityY(){
+        return velocityY;
     }
 
     // Move the object at the given velocity.
