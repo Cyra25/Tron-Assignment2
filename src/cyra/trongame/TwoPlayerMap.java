@@ -39,7 +39,8 @@ public class TwoPlayerMap extends Map {
 
         // adds KeyListeners for player two
         addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {if (!player2.getAlive()) {
+            public void keyPressed(KeyEvent e) {
+                if (!player2.getAlive()) {
             } else if (e.getKeyCode() == KeyEvent.VK_A) {
                 player2.setVelocityX(-velocity2);
                 player2.setVelocityY(0);
@@ -67,7 +68,7 @@ public class TwoPlayerMap extends Map {
                 }
                 //speed down
             } else if (e.getKeyCode() == KeyEvent.VK_F){
-                if (velocity2 >1 ) {
+                if (velocity2 >1) {
                     velocity2--;
                     if (player2.getVelocityX() > 0) {
                         player2.setVelocityX(-velocity2);
@@ -167,20 +168,20 @@ public class TwoPlayerMap extends Map {
         requestFocusInWindow();
     }
 
-    public void setPlayer1Name(String playerName1){
-        this.player1name = playerName1;
-    }
-    public void setPlayer2Name(String playerName2){
-        this.player2name = playerName2;
-    }
-
-    public String getPlayer1Name() {
-        return player1name;
-    }
-
-    public String getPlayer2Name() {
-        return player2name;
-    }
+//    public void setPlayer1Name(String playerName1){
+//        this.player1name = playerName1;
+//    }
+//    public void setPlayer2Name(String playerName2){
+//        this.player2name = playerName2;
+//    }
+//
+//    public String getPlayer1Name() {
+//        return player1name;
+//    }
+//
+//    public String getPlayer2Name() {
+//        return player2name;
+//    }
 
     // updates the scores after each round
     public void addScore() {

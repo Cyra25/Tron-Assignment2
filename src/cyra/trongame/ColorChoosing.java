@@ -15,6 +15,7 @@ public class ColorChoosing {
         x = JOptionPane.showOptionDialog(null, "Choose color for Player " + playerNumber,
                 "Color",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
         color = colors[x];
     }
 

@@ -108,7 +108,7 @@ public abstract class Map extends JComponent {
         });
     }
     public int[] getRandomStart1() {
-        return randomStarts(2);
+        return randomStarts(velocity1);
     }
 
 
@@ -141,7 +141,7 @@ public abstract class Map extends JComponent {
         return start;
     }
     public int[] getRandomStart2() {
-        return randomStarts(2);
+        return randomStarts(velocity2);
     }
 
     public void setVelocity1(int velocity1){

@@ -104,7 +104,7 @@ public class Game extends Component implements Runnable {
         final JButton play = new JButton("Play");
         mainMenu.add(play);
 
-        final JButton quit = new JButton("Quit");
+        final JButton quit = new JButton("Exit");
         mainMenu.add(quit);
 
         outside.add(center, BorderLayout.CENTER);
